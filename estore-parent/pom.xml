@@ -38,11 +38,11 @@
 		</developer>
 	</developers>
 
-<!--
 	<scm>
-		<connection>scm:git:ssh://git@git.vadura.eu:8446/YDNA/ycloud-service-java.git</connection>
-		<developerConnection>scm:git:ssh://git@git.vadura.eu:8446/YDNA/ycloud-service-java.git</developerConnection>
+		<connection>scm:git:https://github.com/Superbia-Team/eStore.git</connection>
+		<developerConnection>scm:git:https://github.com/Superbia-Team/eStore.git</developerConnection>
 	</scm>
+<!--
 	<issueManagement>
 		<system>jira</system>
 		<url>https://jira.vadura.eu:8443/browse/YC</url>
@@ -236,6 +236,23 @@
 				<artifactId>jetty-servlets</artifactId>
 				<version>${jetty.version}</version>
 			</dependency>
+			<dependency>
+	            <groupId>org.eclipse.jetty</groupId>
+	            <artifactId>jetty-annotations</artifactId>
+	            <version>${jetty.version}</version>
+	        </dependency>
+	        
+	        <!-- Spring framework -->
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-context</artifactId>
+	            <version>${spring.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-webmvc</artifactId>
+	            <version>${spring.version}</version>
+	        </dependency>			
 		</dependencies>
 	</dependencyManagement>
 

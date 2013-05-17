@@ -2,7 +2,6 @@ package com.sjl.config;
 
 import javax.servlet.*;
 
-import org.apache.jasper.servlet.*;
 import org.springframework.web.*;
 import org.springframework.web.context.*;
 import org.springframework.web.context.support.*;
@@ -37,10 +36,12 @@ public class WebAppInitializer implements WebApplicationInitializer
 	}
 	
 	private void registerJspServlet(ServletContext aContext) {
+		/*
 		ServletRegistration.Dynamic _dispatcher = 
 			aContext.addServlet(JSP_SERVLET_NAME, new JspServlet());
 		_dispatcher.setLoadOnStartup(1);
 		_dispatcher.addMapping("*.jsp");
+		*/
 	}
 
 	private AnnotationConfigWebApplicationContext createContext(final Class<?>... aModules)

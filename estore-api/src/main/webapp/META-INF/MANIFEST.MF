@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Class-Path: spring-context-3.2.2.RELEASE.jar spring-aop-3.2.2.RELEASE.
+ jar aopalliance-1.0.jar spring-beans-3.2.2.RELEASE.jar spring-core-3.
+ 2.2.RELEASE.jar commons-logging-1.1.1.jar spring-expression-3.2.2.REL
+ EASE.jar spring-webmvc-3.2.2.RELEASE.jar spring-web-3.2.2.RELEASE.jar
+  cglib-2.2.2.jar asm-3.3.1.jar jetty-server-8.1.8.v20121106.jar javax
+ .servlet-3.0.0.v201112011016.jar jetty-continuation-8.1.8.v20121106.j
+ ar jetty-http-8.1.8.v20121106.jar jetty-io-8.1.8.v20121106.jar jetty-
+ util-8.1.8.v20121106.jar jetty-servlet-8.1.8.v20121106.jar jetty-secu
+ rity-8.1.8.v20121106.jar jetty-webapp-8.1.8.v20121106.jar jetty-xml-8
+ .1.8.v20121106.jar jetty-servlets-8.1.8.v20121106.jar jetty-client-8.
+ 1.8.v20121106.jar jetty-annotations-8.1.8.v20121106.jar jetty-plus-8.
+ 1.8.v20121106.jar javax.transaction-1.1.1.v201105210645.jar jetty-jnd
+ i-8.1.8.v20121106.jar javax.mail.glassfish-1.4.1.v201005082020.jar ja
+ vax.activation-1.1.0.v201105071233.jar javax.annotation-1.1.0.v201108
+ 011116.jar org.objectweb.asm-3.1.0.v200803061910.jar commons-lang-2.6
+ .jar commons-collections-3.2.jar slf4j-api-1.6.6.jar logback-classic-
+ 1.0.9.jar logback-core-1.0.9.jar
+

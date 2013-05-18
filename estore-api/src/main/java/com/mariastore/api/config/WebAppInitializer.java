@@ -10,6 +10,8 @@ import org.springframework.web.context.*;
 import org.springframework.web.context.support.*;
 import org.springframework.web.servlet.*;
 
+import com.mariastore.server.StaticContentServlet;
+
 public class WebAppInitializer implements WebApplicationInitializer
 {
 	private static final String DISPATCHER_SERVLET_NAME = "dispatcher";
@@ -51,7 +53,7 @@ public class WebAppInitializer implements WebApplicationInitializer
 	
 	private void registerJspServlet(ServletContext aContext) {
 		ServletRegistration.Dynamic _dispatcher = 
-			aContext.addServlet(STATIC_SERVLET_NAME, new org.eclipse.jetty.servlet.DefaultServlet());
+			aContext.addServlet(STATIC_SERVLET_NAME, new StaticContentServlet());
 		_dispatcher.setLoadOnStartup(1);
 		_dispatcher.addMapping(contexts.get(STATIC_SERVLET_NAME));
 	}

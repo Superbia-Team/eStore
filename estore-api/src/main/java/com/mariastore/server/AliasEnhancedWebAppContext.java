@@ -10,9 +10,7 @@ public class AliasEnhancedWebAppContext extends WebAppContext {
 	@Override
 	public String getResourceAlias(String alias) {
 
-		@SuppressWarnings("unchecked")
-		Map<String, String> resourceAliases = (Map<String, String>) getResourceAliases();
-
+		Map<String, String> resourceAliases = getResourceAliases();
 		if (resourceAliases == null) {
 			return null;
 		}

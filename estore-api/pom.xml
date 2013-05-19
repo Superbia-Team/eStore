@@ -85,6 +85,12 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>estore-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	
 		<!-- SPRING DEPENDENCIES -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -95,10 +101,19 @@
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-			<version>2.2.2</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<version>2.1.4</version>
+		</dependency>		
 
 		<!-- JETTY DEPENDENCIES -->
 		<dependency>

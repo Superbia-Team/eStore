@@ -12,6 +12,7 @@
 
 	<modules>
 		<module>estore-parent</module>
+		<module>estore-core</module>
 		<module>estore-api</module>
 	</modules>
 </project>

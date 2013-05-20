@@ -21,15 +21,10 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { WebModule.WEB_PACKAGE })
+@ComponentScan(basePackages = { ApplicationModule.WEB_PACKAGE })
 //@EnableAspectJAutoProxy(proxyTargetClass=true)
 public class WebModule extends WebMvcConfigurerAdapter
 {
-	public static final String BASE_PACKEAGE = "com.mariastore";
-	public static final String WEB_PACKAGE = 	BASE_PACKEAGE + ".api.web";
-	public static final String CORE_PACKAGE = 	BASE_PACKEAGE + ".core.domain";
-	public static final String API_PACKAGE = 	BASE_PACKEAGE + ".api.domain";
-	
 	public WebModule() {
 		super();
 	}
@@ -50,7 +45,7 @@ public class WebModule extends WebMvcConfigurerAdapter
 	protected HttpMessageConverter<Object> createXMLConverter() {
 		final MarshallingHttpMessageConverter xmlConverter = new MarshallingHttpMessageConverter();
     	final Jaxb2Marshaller jaxbMarshaller = new Jaxb2Marshaller();
-    	jaxbMarshaller.setPackagesToScan(new String[] { WebModule.CORE_PACKAGE, WebModule.API_PACKAGE });
+    	jaxbMarshaller.setPackagesToScan(new String[] { ApplicationModule.CORE_PACKAGE, ApplicationModule.API_PACKAGE });
     	jaxbMarshaller.setCheckForXmlRootElement(false);
     	try {
     		jaxbMarshaller.afterPropertiesSet();

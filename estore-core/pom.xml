@@ -12,7 +12,6 @@
 	</parent>
 
 	<artifactId>estore-core</artifactId>
-	<packaging>war</packaging>
 	<name>eStore :: Core</name>
 	<url>http://www.mariastore.com/</url>
 

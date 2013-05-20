@@ -24,6 +24,7 @@
 		<hibernate-jpamodelgen.version>1.2.0.Final</hibernate-jpamodelgen.version>
 		<querydsl.version>2.9.0</querydsl.version>
 		<spring-data-jpa.version>1.3.0.RELEASE</spring-data-jpa.version>
+		<spring-security.version>3.1.4.RELEASE</spring-security.version>
 	</properties>
 
 	<distributionManagement>
@@ -259,7 +260,7 @@
 				<groupId>com.fasterxml.jackson.module</groupId>
 				<artifactId>jackson-module-jaxb-annotations</artifactId>
 				<version>${jackson.version}</version>
-			</dependency>
+			</dependency>			
 			        
 	        <!-- Spring framework -->
 			<dependency>
@@ -355,7 +356,19 @@
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>${hibernate.version}</version>
-			</dependency>	        
+			</dependency>
+			
+			<!-- security -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

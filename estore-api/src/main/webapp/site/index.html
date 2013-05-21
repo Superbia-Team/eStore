@@ -1,7 +1,48 @@
+<!DOCTYPE html>
 <html>
-	<head>
-	</head>
-	<body>
-		<h1>This is it!</h1>
-	</body>
+<head>
+	<title>Search Results</title>
+
+	<link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+	<link href="css/core.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	
+	<div class="header"></div>
+	
+	<!-- Part 1: Wrap all page content here -->
+	<div id="wrap">
+
+		<!-- Page content -->
+		<div id="content" class="container span9">
+		</div>
+
+		<div id="push"></div>
+	</div>
+
+	<div id="footer">
+		<div class="container">
+			<p class="muted credit">
+				This is sample Twitter Bootstrap sticky footer template
+			</p>
+		</div>
+	</div>
+
+	<!-- Templates -->
+	<script type="text/template" id="item-template">
+		<div class="todo <%= done ? 'done' : '' %>">
+			<div class="display">
+				<input class="check" type="checkbox"<%= done ? 'checked="checked"' : '' %> />
+				<div class="todo-content"></div>
+				<span class="todo-destroy"></span>
+			</div>
+			<div class="edit">
+				<input class="todo-input" type="text" value="" />
+			</div>
+		</div>
+    </script>
+
+	<script data-main="js/store.js" src="js/lib/require.js"></script>
+</body>
 </html>

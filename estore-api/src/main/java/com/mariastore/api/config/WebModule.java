@@ -12,7 +12,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
@@ -32,14 +31,6 @@ public class WebModule extends WebMvcConfigurerAdapter
 	@Bean
 	public RequestMappingHandlerMapping handlerMapping(){
 		return new RequestMappingHandlerMapping();
-	}
-	
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry aRegistry)
-	{
-		//aRegistry.addResourceHandler("/s/*").addResourceLocations("classpath:/META-INF/webapp/WEB-INF/view/scripts/*");
-		//aRegistry.addResourceHandler("/WEB-INF/view/*").addResourceLocations("classpath:/META-INF/webapp/WEB-INF/view/*");
-		aRegistry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/site/images/favicon.ico");
 	}
 	
 	protected HttpMessageConverter<Object> createXMLConverter() {

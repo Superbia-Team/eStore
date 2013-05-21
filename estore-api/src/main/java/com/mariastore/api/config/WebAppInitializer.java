@@ -1,8 +1,6 @@
 package com.mariastore.api.config;
 
 import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -15,19 +13,18 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
 
 import com.mariastore.server.StaticContentServlet;
 
 public class WebAppInitializer implements WebApplicationInitializer
 {
 	private static final String DISPATCHER_SERVLET_NAME = "dispatcher";
+	private static final String DISPATCHER_SERVLET_CONTEXT = "/api/*";
 	private static final String SECURITY_FILTER_NAME = "springSecurityFilterChain";
 	
 	private static final String STATIC_SERVLET_NAME = "static";
-	private static final Map<String, String> contexts = new HashMap<String, String>(){{
-		put(DISPATCHER_SERVLET_NAME, "/api/*");
-		put(STATIC_SERVLET_NAME, "/site/*");
-	}};
+	private static final String STATIC_SERVLET_CONTEXT = "/";
 	
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException
@@ -49,13 +46,13 @@ public class WebAppInitializer implements WebApplicationInitializer
 		ServletRegistration.Dynamic _dispatcher = 
 			servletContext.addServlet(DISPATCHER_SERVLET_NAME, new DispatcherServlet(_ctx));
 		_dispatcher.setLoadOnStartup(1);
-		_dispatcher.addMapping(contexts.get(DISPATCHER_SERVLET_NAME));
+		_dispatcher.addMapping(DISPATCHER_SERVLET_CONTEXT);
 		
 		FilterRegistration.Dynamic _filter = servletContext.addFilter(SECURITY_FILTER_NAME, new DelegatingFilterProxy(SECURITY_FILTER_NAME));
 		_filter.setAsyncSupported(true);
 		_filter.addMappingForServletNames(
 				EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE, DispatcherType.ASYNC), 
-				false, DISPATCHER_SERVLET_NAME);
+				false, DISPATCHER_SERVLET_NAME);		
 	}
 	
 	private AnnotationConfigWebApplicationContext createContext(final Class<?>... modules)
@@ -69,6 +66,9 @@ public class WebAppInitializer implements WebApplicationInitializer
 		ServletRegistration.Dynamic _dispatcher = 
 			servletContext.addServlet(STATIC_SERVLET_NAME, new StaticContentServlet());
 		_dispatcher.setLoadOnStartup(1);
-		_dispatcher.addMapping(contexts.get(STATIC_SERVLET_NAME));
+		_dispatcher.addMapping(STATIC_SERVLET_CONTEXT);
+		
+		FilterRegistration.Dynamic _filter2 = servletContext.addFilter("UrlRewriteFilter", new UrlRewriteFilter());
+		_filter2.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD), false, STATIC_SERVLET_NAME);
 	}
 }

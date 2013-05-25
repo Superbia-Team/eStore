@@ -1,10 +1,11 @@
 requirejs.config({
 	baseUrl: "js/lib",
 	paths : {
-		jquery : 'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min',
-		underscore : 'http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
-		backbone : 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min',
-		bootstrap : 'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min',
+		jquery : 'jquery-1.9.1.min',
+		underscore : 'underscore-min',
+		backbone : 'backbone', // 'backbone-min',
+		bootstrap : 'bootstrap.min',
+		localstorage : 'backbone.localStorage', // 'backbone.localStorage-min',
 		store : '../store',
 		utils : 'utils'
 	},

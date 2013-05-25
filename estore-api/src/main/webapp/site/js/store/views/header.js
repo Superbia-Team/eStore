@@ -1,13 +1,14 @@
 window.HeaderView = Backbone.View.extend({
 
     initialize: function () {
-        //this.searchResults = new EmployeeCollection();
-        //this.searchresultsView = new EmployeeListView({model: this.searchResults, className: 'dropdown-menu'});
+		// Close the search dropdown on click anywhere in the UI
+		/*$('body').click(function () {
+			$('.dropdown').removeClass("open");
+		});*/
     },
 
     render: function () {
         $(this.el).html(this.template());
-        //$('.navbar-search', this.el).append(this.searchresultsView.render().el);
         return this;
     },
 

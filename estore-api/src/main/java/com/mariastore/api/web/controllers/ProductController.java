@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.mariastore.api.domain.Products;
 import com.mariastore.core.domain.Product;
+import com.mariastore.core.domain.Products;
 
 @Controller
 @RequestMapping("/products")

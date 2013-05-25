@@ -1,4 +1,4 @@
-package com.mariastore.api.domain;
+package com.mariastore.core.domain;
 
 import java.util.List;
 

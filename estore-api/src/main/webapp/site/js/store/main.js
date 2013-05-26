@@ -36,10 +36,11 @@ define([
 			// Since the home view never changes, we instantiate it and render it only once
 			if (!this.adminView) {
 				this.adminView = new AdminView();
+				this.adminView.render();
 			} else {
 				this.adminView.delegateEvents(); // delegate events when the view is recycled
 			}
-			this.adminView.render();
+			$("#content").html($(this.adminView.el).html());
 			this.adminView.select('admin-menu');
 		},
 

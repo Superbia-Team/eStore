@@ -6,13 +6,13 @@ window.AdminView = Backbone.View.extend({
     },
 
     render: function () {
-    	this.searchResults.findByName("*");
         $(this.el).html(this.template());        
         $('.navbar-search').append(this.searchresultsView.render().el);
         return this;
     },
     
     select: function(menuItem) {
+    	this.searchResults.findByName("*");
         $('.nav li').removeClass('active');
         $('.' + menuItem).addClass('active');
     }

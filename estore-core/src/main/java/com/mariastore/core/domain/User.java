@@ -1,6 +1,7 @@
 package com.mariastore.core.domain;
 
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -25,6 +26,7 @@ public class User {
 		this.id = id;
 	}
 
+	@XmlElement(name="fn")
 	public String getFirstName() {
 		return firstName;
 	}
@@ -33,6 +35,7 @@ public class User {
 		this.firstName = firstName;
 	}
 
+	@XmlElement(name="ln")
 	public String getLastName() {
 		return lastName;
 	}
@@ -41,6 +44,7 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	@XmlElement(name="mn")
 	public String getMiddleName() {
 		return middleName;
 	}
@@ -49,6 +53,7 @@ public class User {
 		this.middleName = middleName;
 	}
 
+	@XmlElement(name="e")
 	public String getEmail() {
 		return email;
 	}

@@ -1,10 +1,3 @@
-/**
- * APP.currentSession.get("user");
- * or
- * APP.currentSession.set("user");
- *
- * */
-
 if(typeof APP == "undefined"){ var APP = { }; }
 
 define([
@@ -28,8 +21,7 @@ define([
 			}
 		},
 		beforeSend: function(xhr) {
-			var token = APP.currentSession ? 
-					APP.currentSession.get("securityToken") : null;
+			var token = APP.currentSession ? APP.currentSession.get("securityToken") : null;
 			if (token) {
 				xhr.setRequestHeader("Authorization", "Basic " + token);
 			}
@@ -39,19 +31,16 @@ define([
 	APP.Session = Backbone.Model.extend({
 		defaults: {
 			securityToken: null,
-			userProfile: new UserProfile(),
-			updated : false
+			userProfile: new UserProfile()
 		},
 		state : false,
 		options : {
-			rememberMe : false
+			rememberMe : true
 		},
 		initialize : function(model, options) {
 			_.bindAll(this);
 			
-			// default vars
 			options = options || {};
-			// parse options
 			this.options = _.extend(this.options, options);
 			
 			if (this.options.rememberMe) {
@@ -63,48 +52,46 @@ define([
 			// try loading the session
 			var localSession = this.store.get("session");
 			if (!_.isNull(localSession)) {
-				this.set(JSON.parse(localSession));
-				// reset the updated flag
-				this.set({
-					updated : false
-				});
-				// sync with the server
-				this.save();
+				// restore from storage all root properties
+				var storedJSON = JSON.parse(localSession); 
+				this.set(storedJSON);
+				
+				// restore child objects as soon as they were broken in previos step
+				var userProfile = new UserProfile();
+				if (!_.isNull(storedJSON["userProfile"])) {
+					userProfile.set(storedJSON["userProfile"]);
+				}
+				this.set({"userProfile" : userProfile});
 			}
 			
 			// event binders
-			this.bind("change", this.update);
+			this.bind("change", this.cache);
 			this.bind("error", this.error);
+			
+			// bind all child objects for changes
+			var self = this;
+			this.get("userProfile").bind("change", function(){
+				self.save();
+			});
 		},
 		sync : function(method, model, options) {
-			if ("read" == method) {
-				this.get("userProfile").fetch();
-			}
-			return this.update();
-		},
-		update : function() {
-			// set a trigger
-			if (!this.state) {
-				this.state = true;
-				this.trigger("loaded");
-			}
-			
-			// caching is triggered after every model update (fetch/set)
-			if (this.get("updated")) {
-				this.cache();
+			var self = this;
+			switch(method){
+				case "read":
+					this.get("userProfile").fetch();
+					break;
+				case "create":
+				case "update":
+					this.cache();
+					break;				
 			}
 		},
 		cache : function() {
-			console.log("CACHE!!!!", this.toJSON());
-			// update the local session
 			this.store.set("session", JSON.stringify(this.toJSON()));
 		},
 		logout : function() {
-			this.set({
-				securityToken : null,
-				userProfile : new UserProfile(),
-				updated : false
-			});
+			this.set({ securityToken : null});
+			this.get("userProfile").clear();
 		},
 		login : function(username, password) {
 			$('#content').html(new LoginView().render().el);
@@ -118,14 +105,12 @@ define([
 				return sessionStorage.getItem(name);
 			},
 			set : function(name, val) {
-				// validation first?
 				return sessionStorage.setItem(name, val);
 			},
 			check : function(name) {
 				return (sessionStorage.getItem(name) == null);
 			},
 			clear : function(name) {
-				// actually just removing the session...
 				return sessionStorage.removeItem(name);
 			}
 		},
@@ -140,7 +125,6 @@ define([
 				return (localStorage.getItem(name) == null);
 			},
 			clear : function(name) {
-				// actually just removing the session...
 				return localStorage.removeItem(name);
 			}
 		}		
@@ -186,7 +170,8 @@ define([
 	        	        APP.currentSession.set({
 	        				securityToken : base64.encode(credentials.username + ":" + credentials.password)
 	        			});
-	        	        APP.currentSession.save();
+	        	        
+	        	        // fetch all session related objects
 	        	        APP.currentSession.fetch();
 	        	        
 	        	        // we should store URL and then recover it!!!

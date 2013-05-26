@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ public class ProductController {
 
 	@RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public Products searchAllJSON() {
+    public ResponseEntity<Products> searchAllJSON() {
 		List<Product> products = new ArrayList<Product>();
 		
 		Product testProduct = new Product();
@@ -39,17 +40,17 @@ public class ProductController {
 		testProduct2.setName("Test product 2");
 		products.add(testProduct2);
 		
-        return new Products(products);
+        return new ResponseEntity<Products>(new Products(products), HttpStatus.OK);
     }
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Product getById(@PathVariable("id") final Long id, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
+    public ResponseEntity<Product> getById(@PathVariable("id") final Long id, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
 		Product testProduct = new Product();
 		testProduct.setId(id);
 		testProduct.setSku("TST1");
 		testProduct.setName("Test product");
-        return testProduct;
+        return new ResponseEntity<Product>(testProduct, HttpStatus.OK);
     }
 	
 	@RequestMapping(method = RequestMethod.POST)

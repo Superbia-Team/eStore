@@ -10,6 +10,7 @@
 		<intercept-url pattern="/api/login" access="ROLE_ANONYMOUS,ROLE_USER" />
 		<intercept-url pattern="/api/**" access="ROLE_USER" />
 
+		<http-basic entry-point-ref="restAuthenticationEntryPoint" />
 		<custom-filter ref="authenticationFilter" position="FORM_LOGIN_FILTER" />
 	</http>
 

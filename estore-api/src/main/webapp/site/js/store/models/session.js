@@ -1,3 +1,10 @@
+/**
+ * APP.currentSession.get("user");
+ * or
+ * APP.currentSession.set("user");
+ *
+ * */
+
 if(typeof APP == "undefined"){ var APP = { }; }
 
 define([
@@ -6,6 +13,28 @@ define([
   'localstorage',
   'store/models/userProfile'
 ], function(_, Backbone) {
+	
+	// Tell jQuery to watch for any 401 or 403 errors and handle them appropriately
+	$.ajaxSetup({
+		statusCode: {
+			401: function(){
+				APP.currentSession.set({securityToken : null});
+				// Redirec the to the login page.
+				window.location.replace('#login');
+			},
+			403: function() {
+				// 403 -- Access denied
+				window.location.replace('#denied');
+			}
+		},
+		beforeSend: function(xhr) {
+			var token = APP.currentSession ? 
+					APP.currentSession.get("securityToken") : null;
+			if (token) {
+				xhr.setRequestHeader("Authorization", "Basic " + token);
+			}
+		}		
+	});	
 	
 	APP.Session = Backbone.Model.extend({
 		defaults: {
@@ -49,7 +78,7 @@ define([
 		},
 		sync : function(method, model, options) {
 			if ("read" == method) {
-				this.userProfile.fetch();
+				this.get("userProfile").fetch();
 			}
 			return this.update();
 		},
@@ -71,9 +100,11 @@ define([
 			this.store.set("session", JSON.stringify(this.toJSON()));
 		},
 		logout : function() {
-			this.securityToken = null;
-			this.userProfile = new UserProfile();
-			this.updated = false;
+			this.set({
+				securityToken : null,
+				userProfile : new UserProfile(),
+				updated : false
+			});
 		},
 		login : function(username, password) {
 			$('#content').html(new LoginView().render().el);
@@ -103,7 +134,6 @@ define([
 				return localStorage.getItem(name);
 			},
 			set : function(name, val) {
-				// validation first?
 				return localStorage.setItem(name, val);
 			},
 			check : function(name) {
@@ -153,7 +183,10 @@ define([
 	                    $('.alert-error').text(data.error.text).show();
 	                }
 	                else {
-	        	        APP.currentSession.securityToken = base64.encode(credentials.username + ":" + credentials.password);
+	        	        APP.currentSession.set({
+	        				securityToken : base64.encode(credentials.username + ":" + credentials.password)
+	        			});
+	        	        APP.currentSession.save();
 	        	        APP.currentSession.fetch();
 	        	        
 	        	        // we should store URL and then recover it!!!

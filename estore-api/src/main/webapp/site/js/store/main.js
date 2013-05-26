@@ -7,28 +7,6 @@ define([
         "utils"
 ], function($, _, Backbone) {
 	
-	// Tell jQuery to watch for any 401 or 403 errors and handle them appropriately
-	$.ajaxSetup({
-		statusCode: {
-			401: function(){
-				// Redirec the to the login page.
-				window.location.replace('#login');
-			},
-			403: function() {
-				// 403 -- Access denied
-				window.location.replace('#denied');
-			}
-		},
-		beforeSend: function(xhr) {
-			if (APP.currentSession && APP.currentSession.securityToken) {
-				xhr.setRequestHeader("Authorization", "Basic " + APP.currentSession.securityToken);
-			}
-		}		
-	});	
-	
-	$.ajaxSetup({
-	});
-	
 	window.Router = Backbone.Router.extend({
 
 		routes: {

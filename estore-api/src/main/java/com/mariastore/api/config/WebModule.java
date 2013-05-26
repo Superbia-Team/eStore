@@ -3,9 +3,12 @@ package com.mariastore.api.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -24,6 +27,8 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 //@EnableAspectJAutoProxy(proxyTargetClass=true)
 public class WebModule extends WebMvcConfigurerAdapter
 {
+	private static final String MESSAGES_DEFAULT = "messages";
+	
 	public WebModule() {
 		super();
 	}
@@ -31,6 +36,13 @@ public class WebModule extends WebMvcConfigurerAdapter
 	@Bean
 	public RequestMappingHandlerMapping handlerMapping(){
 		return new RequestMappingHandlerMapping();
+	}
+	
+	@Bean(name="messageSource")
+	public MessageSource createMessageSource() {
+		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasenames(MESSAGES_DEFAULT);
+		return messageSource;
 	}
 	
 	protected HttpMessageConverter<Object> createXMLConverter() {

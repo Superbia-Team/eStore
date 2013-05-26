@@ -38,9 +38,9 @@ body {
 
 /* Custom page CSS
       -------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-.container .credit {
-	margin: 20px 0;
+
+#content {
+	min-height: 300px;
 }
 
 .dropdown-menu {

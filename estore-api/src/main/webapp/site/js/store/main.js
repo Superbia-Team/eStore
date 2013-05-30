@@ -10,14 +10,16 @@ define([
 	window.Router = Backbone.Router.extend({
 
 		routes: {
-			"" : "home",
-			"admin" : "admin",
-			"login" : "login"
+			"" 		: "home",
+			"admin"	: "admin",
+			"login"	: "login",
+			"search/:query/:page": 'search'
 		},
 
 		initialize: function () {
 			this.headerView = new HeaderView();
 			APP.currentSession = new APP.Session();
+			APP.urlHelper = new UriHelper();
 		},
 
 		home: function () {
@@ -28,8 +30,8 @@ define([
 			} else {
 				this.homeView.delegateEvents(); // delegate events when the view is recycled
 			}
-			$("#content").html($(this.homeView.el).html());
-			this.headerView.select('home-menu');
+			this.select('home-menu', $(this.homeView.el).html());
+			this.homeView.select();
 		},
 		
 		admin: function () {
@@ -40,13 +42,29 @@ define([
 			} else {
 				this.adminView.delegateEvents(); // delegate events when the view is recycled
 			}
-			$("#content").html($(this.adminView.el).html());
-			this.adminView.select('admin-menu');
+			this.select('admin-menu', $(this.adminView.el).html());
+			this.adminView.select();
 		},
 
 		login: function() {
-			APP.currentSession.login();
-		}
+			if (!APP.currentSession.redirectSSL()) {
+				this.select(null, $(new LoginView().render().el));
+			}
+		},
+		
+		// Will match url: #search/something/p2
+		search: function(query, page) {
+			alert("Search for '" + query + "' page: " + page);
+		},
+		
+		select: function(menuItem, content) {
+			if (menuItem) {
+		        $('.nav li').removeClass('active');
+		        $('.' + menuItem).addClass('active');
+			}
+	        
+	        $("#content").html(content);
+	    }
 	});
 			
 	require(["store/views/header",

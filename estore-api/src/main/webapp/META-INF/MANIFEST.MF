@@ -16,15 +16,15 @@ Class-Path: estore-core.jar spring-tx-3.2.2.RELEASE.jar aopalliance-1.
  notations-2.1.4.jar jackson-core-2.1.4.jar jackson-module-jaxb-annota
  tions-2.1.4.jar spring-security-web-3.1.4.RELEASE.jar spring-security
  -core-3.1.4.RELEASE.jar spring-security-config-3.1.4.RELEASE.jar urlr
- ewritefilter-4.0.4.jar jetty-server-8.1.8.v20121106.jar javax.servlet
- -3.0.0.v201112011016.jar jetty-continuation-8.1.8.v20121106.jar jetty
- -http-8.1.8.v20121106.jar jetty-io-8.1.8.v20121106.jar jetty-util-8.1
- .8.v20121106.jar jetty-servlet-8.1.8.v20121106.jar jetty-security-8.1
- .8.v20121106.jar jetty-webapp-8.1.8.v20121106.jar jetty-xml-8.1.8.v20
- 121106.jar jetty-servlets-8.1.8.v20121106.jar jetty-client-8.1.8.v201
- 21106.jar jetty-annotations-8.1.8.v20121106.jar jetty-plus-8.1.8.v201
- 21106.jar javax.transaction-1.1.1.v201105210645.jar jetty-jndi-8.1.8.
- v20121106.jar javax.mail.glassfish-1.4.1.v201005082020.jar javax.acti
- vation-1.1.0.v201105071233.jar javax.annotation-1.1.0.v201108011116.j
- ar org.objectweb.asm-3.1.0.v200803061910.jar
+ ewritefilter-4.0.4.jar jetty-server-9.0.3.v20130506.jar javax.servlet
+ -3.0.0.v201112011016.jar jetty-http-9.0.3.v20130506.jar jetty-util-9.
+ 0.3.v20130506.jar jetty-io-9.0.3.v20130506.jar jetty-servlet-9.0.3.v2
+ 0130506.jar jetty-security-9.0.3.v20130506.jar jetty-webapp-9.0.3.v20
+ 130506.jar jetty-xml-9.0.3.v20130506.jar jetty-servlets-9.0.3.v201305
+ 06.jar jetty-continuation-9.0.3.v20130506.jar jetty-annotations-9.0.3
+ .v20130506.jar jetty-plus-9.0.3.v20130506.jar javax.transaction-1.1.1
+ .v201105210645.jar jetty-jndi-9.0.3.v20130506.jar javax.mail.glassfis
+ h-1.4.1.v201005082020.jar javax.activation-1.1.0.v201105071233.jar ja
+ vax.annotation-1.1.0.v201108011116.jar org.objectweb.asm-3.1.0.v20080
+ 3061910.jar jetty-jmx-9.0.3.v20130506.jar
 

@@ -10,28 +10,33 @@ define([
 	// Tell jQuery to watch for any 401 or 403 errors and handle them appropriately
 	$.ajaxSetup({
 		statusCode: {
-			401: function(){
-				APP.currentSession.set({securityToken : null});
-				// Redirec the to the login page.
-				window.location.replace('#login');
+			401: function() {
+				APP.currentSession.login();
 			},
 			403: function() {
-				// 403 -- Access denied
-				window.location.replace('#denied');
+				APP.currentSession.denied();
 			}
 		},
 		beforeSend: function(xhr) {
-			var token = APP.currentSession ? APP.currentSession.get("securityToken") : null;
-			if (token) {
-				xhr.setRequestHeader("Authorization", "Basic " + token);
+			if (APP.currentSession) {
+				var token = APP.currentSession.get("securityToken");
+				if (token) {
+					if (APP.currentSession.redirectSSL()) {
+						xhr.abort();
+					} else {
+						xhr.setRequestHeader("Authorization", "Basic " + token);
+					}
+				}				
 			}
 		}		
 	});	
 	
 	APP.Session = Backbone.Model.extend({
 		defaults: {
-			securityToken: null,
-			userProfile: new UserProfile()
+			securityToken:	null,
+			userProfile:	new UserProfile(),
+			sslProtocol:	"https:",
+			sslPort:		"8443"
 		},
 		state : false,
 		options : {
@@ -50,6 +55,7 @@ define([
 			}
 			
 			// try loading the session
+			var refresh = false;
 			var localSession = this.store.get("session");
 			if (!_.isNull(localSession)) {
 				// restore from storage all root properties
@@ -60,6 +66,7 @@ define([
 				var userProfile = new UserProfile();
 				if (!_.isNull(storedJSON["userProfile"])) {
 					userProfile.set(storedJSON["userProfile"]);
+					refresh = true;
 				}
 				this.set({"userProfile" : userProfile});
 			}
@@ -72,7 +79,16 @@ define([
 			var self = this;
 			this.get("userProfile").bind("change", function(){
 				self.save();
+			}).bind("parse", function() {
+				debugger;
+				self.set({refresh : false});
 			});
+			
+	        // fetch all session related objects
+	        if (refresh || this.get("refresh")) {
+	        	//this.set({refresh:false});
+	        	this.fetch();
+	        }
 		},
 		sync : function(method, model, options) {
 			var self = this;
@@ -93,8 +109,12 @@ define([
 			this.set({ securityToken : null});
 			this.get("userProfile").clear();
 		},
-		login : function(username, password) {
-			$('#content').html(new LoginView().render().el);
+		login : function() {
+			this.set({securityToken : null, "location" : Backbone.history.fragment});
+			window.location.replace('#login');
+		},
+		denied : function() { // 403 -- Access denied
+			window.location.replace('#denied');
 		},		
 		error : function(model, req, options, error) {
 			// consider redirecting based on statusCode
@@ -127,7 +147,17 @@ define([
 			clear : function(name) {
 				return localStorage.removeItem(name);
 			}
-		}		
+		},
+		redirectSSL : function() {
+			var s = APP.currentSession;
+			var p = s.get("sslProtocol");
+			if (p != document.location.protocol.split(0)) {
+				window.location = APP.urlHelper.makeSecureUrl(p, s.get("sslPort")); 
+				return true;
+			}
+			
+			return false;
+		}
 	});
 
 	window.LoginView = Backbone.View.extend({
@@ -171,11 +201,9 @@ define([
 	        				securityToken : base64.encode(credentials.username + ":" + credentials.password)
 	        			});
 	        	        
-	        	        // fetch all session related objects
-	        	        APP.currentSession.fetch();
-	        	        
-	        	        // we should store URL and then recover it!!!
-	                    Backbone.history.navigate("/#");
+	        	        APP.currentSession.set({refresh : true});
+	        	        var location = APP.currentSession.get("location");
+	        	        Backbone.history.loadUrl( location || "/#" );
 	                }
 	            }
 	        });

@@ -30,11 +30,5 @@ window.HeaderView = Backbone.View.extend({
         if (event.keyCode == 13) {
             event.preventDefault();
         }
-    },
-
-    select: function(menuItem) {
-        $('.nav li').removeClass('active');
-        $('.' + menuItem).addClass('active');
     }
-
 });

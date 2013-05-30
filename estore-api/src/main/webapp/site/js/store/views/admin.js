@@ -11,10 +11,8 @@ window.AdminView = Backbone.View.extend({
         return this;
     },
     
-    select: function(menuItem) {
-    	this.searchResults.findByName("*");
-        $('.nav li').removeClass('active');
-        $('.' + menuItem).addClass('active');
+    select: function() {
+       	this.searchResults.findByName("*");
     }
 
 });

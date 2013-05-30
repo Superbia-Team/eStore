@@ -15,6 +15,9 @@ window.HomeView = Backbone.View.extend({
 
     showMeBtnClick:function () {
         app.headerView.search();
+    },
+    
+    select: function() {
+    	
     }
-
 });

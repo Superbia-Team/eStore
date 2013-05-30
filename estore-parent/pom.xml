@@ -14,7 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>3.2.2.RELEASE</spring.version>
 		<slf4j.version>1.6.6</slf4j.version>
-		<jetty.version>8.1.8.v20121106</jetty.version>
+		<jetty.version>9.0.3.v20130506</jetty.version>
 		
 		<jackson.version>2.1.4</jackson.version>
 		<jaxb-api.version>2.2.7</jaxb-api.version>
@@ -249,6 +249,11 @@
 	            <artifactId>jetty-annotations</artifactId>
 	            <version>${jetty.version}</version>
 	        </dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-jmx</artifactId>
+				<version>${jetty.version}</version>
+			</dependency>
 
 			<!-- Spring REST -->
 			<dependency>

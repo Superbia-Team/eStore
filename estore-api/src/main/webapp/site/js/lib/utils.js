@@ -19,8 +19,10 @@ window.templateLoader = {
     }
 };
 
+// ============================================================================
+// Base 64 encoding
+// ============================================================================
 var base64 = {};
-
 (function () {
   var END_OF_INPUT = -1,
       base64Chars = new Array(
@@ -131,3 +133,69 @@ var base64 = {};
       return result;
   }
 })()
+
+
+// ============================================================================
+// URL utils
+// ============================================================================
+function UriHelper() {
+	this._regExp = /^((\w+):\/\/\/?)?((\w+):?(\w+)?@)?([^\/\?:]+):?(\d+)?(\/?[^\?#;\|]+)?([;\|])?([^\?#]+)?\??([^#]+)?#?(\w*)/;
+
+	this._getVal = function(r, i) {
+		if(!r) return null;
+		return (typeof(r[i]) == 'undefined' ? "" : r[i]);
+	};
+	
+	this.queryParams = function() {
+		return this.parseQueryString(window.location.search.slice(1));
+	}
+	
+	this.parseQueryString = function(queryString){
+	    var params = {};
+	    if(queryString) {
+	        _.each(
+	            _.map(decodeURI(queryString).split(/&/g),function(el,i){
+	                var aux = el.split('='), o = {};
+	                if(aux.length >= 1){
+	                    var val = undefined;
+	                    if(aux.length == 2) val = aux[1];
+	                    o[aux[0]] = val;
+	                }
+	                return o;
+	            }),
+	            function(o){
+	                _.extend(params,o);
+	            }
+	        );
+	    }
+	    return params;
+	};
+
+	this.parse = function(uri) {
+		var r = this._regExp.exec(uri);
+		return results = {
+			url: this._getVal(r,0),
+			protocol: this._getVal(r,2),
+			username: this._getVal(r,4),
+			password: this._getVal(r,5),
+			host: this._getVal(r,6),
+			port: this._getVal(r,7),
+			pathname: this._getVal(r,8),
+			urlparamseparator: this._getVal(r,9),
+			urlparam: this._getVal(r,10),
+			querystring: this._getVal(r,11),
+			params: this.parseQueryString(this._getVal(r,11)),
+			fragment: this._getVal(r,12)
+		};
+	};
+	
+	this.makeSecureUrl = function(protocol, port) {
+		var r = this.parse(window.location.href);
+		var url = protocol + "//" + r.host +
+			(port && port !== "80" && port !== "443" ? (":" + port) : "") +
+			r.pathname + 
+			(r.fragment && r.fragment.length > 0 ? ("#" + r.fragment) : "") +
+			(r.querystring && r.querystring.length > 0 ? ("?" + r.querystring) : "");
+		return url;
+	};
+}

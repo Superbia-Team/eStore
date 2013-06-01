@@ -40,7 +40,7 @@ define([
 		},
 		state : false,
 		options : {
-			rememberMe : true
+			rememberMe : false
 		},
 		initialize : function(model, options) {
 			_.bindAll(this);
@@ -66,9 +66,13 @@ define([
 				var userProfile = new UserProfile();
 				if (!_.isNull(storedJSON["userProfile"])) {
 					userProfile.set(storedJSON["userProfile"]);
-					refresh = true;
+					if (!_.isNull(storedJSON.securityToken)) {
+						refresh = true;
+					}
 				}
 				this.set({"userProfile" : userProfile});
+			} else {
+				this.save();
 			}
 			
 			// event binders
@@ -79,22 +83,24 @@ define([
 			var self = this;
 			this.get("userProfile").bind("change", function(){
 				self.save();
-			}).bind("parse", function() {
-				debugger;
-				self.set({refresh : false});
 			});
 			
 	        // fetch all session related objects
 	        if (refresh || this.get("refresh")) {
-	        	//this.set({refresh:false});
-	        	this.fetch();
+	        	setTimeout(function(){
+	        		this.fetch();
+	        	}, 0);
 	        }
 		},
 		sync : function(method, model, options) {
 			var self = this;
 			switch(method){
 				case "read":
-					this.get("userProfile").fetch();
+					this.get("userProfile").fetch({
+						success: function(){
+							self.set({refresh:false});
+						}
+					});
 					break;
 				case "create":
 				case "update":
@@ -110,8 +116,14 @@ define([
 			this.get("userProfile").clear();
 		},
 		login : function() {
-			this.set({securityToken : null, "location" : Backbone.history.fragment});
-			window.location.replace('#login');
+			
+			if (!APP.currentSession.redirectSSL()) {
+				var loc = ("" + Backbone.history.fragment);
+				if (loc !== "login") {
+					this.set({"location" : loc});
+				}
+				window.location.replace('#login');				
+			}
 		},
 		denied : function() { // 403 -- Access denied
 			window.location.replace('#denied');
@@ -203,7 +215,8 @@ define([
 	        	        
 	        	        APP.currentSession.set({refresh : true});
 	        	        var location = APP.currentSession.get("location");
-	        	        Backbone.history.loadUrl( location || "/#" );
+	        	        if (!location || location.length ==0) location = "/#"; 
+	        	        Backbone.history.loadUrl( location );
 	                }
 	            }
 	        });

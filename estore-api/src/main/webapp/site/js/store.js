@@ -1,10 +1,10 @@
 requirejs.config({
 	baseUrl: "js/lib",
 	paths : {
-		jquery : 'jquery-1.9.1.min',
+		jquery : 'jquery-1.10.1', // 'jquery-1.10.1.min', 
 		underscore : 'underscore-min',
 		backbone : 'backbone', // 'backbone-min',
-		bootstrap : 'bootstrap.min',
+		bootstrap : 'bootstrap', // 'bootstrap.min',
 		localstorage : 'backbone.localStorage', // 'backbone.localStorage-min',
 		store : '../store',
 		utils : 'utils'
@@ -19,6 +19,10 @@ requirejs.config({
 		'underscore' : {
 			exports : '_'
 		},
+		'bootstrap': {
+			deps: [ 'jquery' ],
+			exports: "$.fn.button"
+		}
 	}
 });
 

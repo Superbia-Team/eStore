@@ -24,3 +24,13 @@ __Backlog__
 __Backlog__/*
 production/solr/output
 production/solr/output/*
+
+log-folder_IS_UNDEFINED
+log-folder_IS_UNDEFINED/*
+.sass-cache
+.sass-cache/*
+.jruby
+.jruby/*
+test-output
+test-output/*
+

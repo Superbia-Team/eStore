@@ -7,7 +7,8 @@ E-commerce site implementation using floowing technologies:
 - Spring Data Solr
 - Spring Data REST
 - Akka
-- Coffee script and SCSS for UI
+- SCSS/SASS for UI styles
+- Javascript + Backbone + Marionette (NO Coffee script - sucks. I barely can read that it ... hard to read. Hard to maintain)
 
 ================================
 Development environment configuration.

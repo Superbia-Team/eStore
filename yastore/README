@@ -8,7 +8,7 @@ E-commerce site implementation using floowing technologies:
 - Spring Data REST
 - Akka
 - SCSS/SASS for UI styles
-- Javascript + Backbone + Marionette (NO Coffee script - sucks. I barely can read that it ... hard to read. Hard to maintain)
+- Javascript + Backbone + Marionette (NO Coffee script. I barely can read it ... hard to maintain)
 
 ================================
 Development environment configuration.

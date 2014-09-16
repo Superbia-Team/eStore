@@ -1,0 +1,49 @@
+<script type="text/template"  id="thunmbnails-list-item-template">
+	<div class="img-thumbnail">
+		<img src="images/products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+	</div>
+	<p>
+		<span class="label label-default product-price">$12.55</span> <a role="button" href="#"
+			class="btn btn-default btn-view-details pull-right">View details »</a>
+	</p>
+</script>
+
+<script type="text/template"  id="details-list-item-template">
+	<div class="thumbnail">
+		<img src="images/products/images2.jpg" alt="New Arrivals" title="New Arrivals">
+		<div class="caption">
+			<h3>Thumbnail label</h3>
+			<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+				metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+			<p>
+				<a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a>
+			</p>
+		</div>
+	</div>
+</script>
+
+<script type="text/template" id="category-search-paginator-template">
+	<div class="btn-group">
+		<span id="category-search-paginator" class="toolbar-text">Page: 
+		<% _.each(pages, function(page, index) { %>
+			<% if (index == currentPage) { %>
+				<span class="paginator-page badge facet-cnt"><%= page %></span>
+			<% } else { %>
+				<span class="paginator-page"><%= page %></span>
+			<% } %>
+      	<% }); %>
+		</span>
+	</div>
+	<div class="btn-group">
+		<span class="toolbar-text">/</span>
+	</div>
+	<div class="btn-group">
+		<span class="toolbar-text"><%= pageFrom %> - <%= pageTo %></span>
+	</div>
+	<div class="btn-group">
+		<span class="toolbar-text">/ Total: </span>
+	</div>
+	<div class="btn-group">
+		<span class="toolbar-text"><b><%= total %></b></span>
+	</div>
+</script>

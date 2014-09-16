@@ -1,0 +1,43 @@
+E-commerce site implementation using floowing technologies:
+- Servlet 3.0
+- Web Fragments 3.0
+- Web Socket
+- Spring framework
+- Spring Data JPA
+- Spring Data Solr
+- Spring Data REST
+- Akka
+- Coffee script and SCSS for UI
+
+================================
+Development environment configuration.
+================================
+
+=========
+1. Using Tomcat 7.0.50 and higher
+=========
+1.1. $ gradle eclipse eclipseWtp
+1.2. Goto Eclipse -> import -> General -> Existing Projects into Workspace
+1.3. On each Web Fragment project (default: yastore-web-core, yastore-web-api) -> in Project Explorer -> right click -> Properties ->
+Deployment Assembly -> Point deploy path for "/src/main/java" to "/" and "/src/main/resources" to "/"
+It shows warning that folder for deployment descriptor is not defined -> expend "Advanced" at the bottom and select "src/main/resources"
+to as such folder.
+1.4. Deploy main web app (default: yastore-web-app)
+
+=========
+2. Using Embedded Jetty 9.2.x
+=========
+2.1. Install Eclipse Gradle plugin
+2.2. Import all existing Gradle project
+2.3. Goto yastore-web-jetty find and right mouse click on "MainIDE.java" class and choose "Debug As" -> "Java Application"
+IMPORTANT NOTE1: Make "yastore-web-app" to be the project for run configuration!!! It will bring all required dependencies into classpath.
+IMPORTANT NOTE2: You need to re-build project after importing it into Eclipse. The Eclipse gradle plugin will call "gradle clean" automatically which will delete all generated sources.
+2.4. Goto: menu "Run" -> "Debug Configurations" -> find "Java Application" / MainIDE -> select "Arguments" tab
+and place following in the "Program arguments" section:
+
+-o /ABSOLUTE/PATH/TO/APP/HOME
+
+The folder specified above will be use to keep all configuration files, in-memory db, etc.
+
+Debug standalone:
+java -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=1044 yastore-web-app-1.0.0-SNAPSHOT.war

@@ -1,0 +1,26 @@
+apply plugin: 'java'
+
+description = "Yet Another eStore :: Core Services :: Search"
+    
+dependencies {
+    compile (
+        project (':yastore-core:yastore-commons'),
+        project (':yastore-core:yastore-services'),
+
+		[group: 'org.springframework.data', name : 'spring-data-solr', version : "1.2.0.RELEASE"],
+
+        
+        //[group: 'com.searchtechnologies.aspire', name : 'aspire-framework', version : "${aspireVersion}"],
+        //[group: 'com.searchtechnologies.aspire', name : 'aspire-services', version : "${aspireVersion}"]
+		// org.restlet.jee:org.restlet:jar:2.1.1:compile
+		// org.restlet.jee:org.restlet.ext.servlet:jar:2.1.1:compile
+    )
+    
+    compile("org.apache.solr:solr-core:${solrVersion}") {
+        exclude group: 'log4j'
+        exclude group: 'org.slf4'
+        exclude group: 'org.eclipse.jetty'
+        exclude group: 'org.eclipse.jetty.orbit'
+        exclude group: 'commons-configuration', module: 'commons-configuration'
+    }
+}

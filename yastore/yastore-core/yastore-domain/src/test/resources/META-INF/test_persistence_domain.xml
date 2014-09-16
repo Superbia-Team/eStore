@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+	<persistence-unit name="yastore-test" transaction-type="RESOURCE_LOCAL">
+
+		<class>com.dm.estore.core.models.AuditableEntity</class>
+		<class>com.dm.estore.core.models.AbstractEntity</class>		
+		<class>com.dm.estore.core.models.Address</class>
+		<class>com.dm.estore.core.models.EmailAddress</class>
+		<class>com.dm.estore.core.models.User</class>
+		<class>com.dm.estore.core.models.Customer</class>
+		<class>com.dm.estore.core.models.StringI18N</class>
+		<class>com.dm.estore.core.models.Tag</class>
+		<class>com.dm.estore.core.models.Product</class>
+		<class>com.dm.estore.core.models.Category</class>
+		<class>com.dm.estore.core.models.LineItem</class>
+		<class>com.dm.estore.core.models.AbstractOrder</class>
+		<class>com.dm.estore.core.models.Order</class>
+		<class>com.dm.estore.core.models.ShoppingCart</class>
+		<class>com.dm.estore.core.models.I18NString</class>
+		<class>com.dm.estore.core.models.I18NStringValue</class>
+		
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+	</persistence-unit>
+
+</persistence> 

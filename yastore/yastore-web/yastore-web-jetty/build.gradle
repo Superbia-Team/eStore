@@ -1,0 +1,42 @@
+apply plugin: 'java'
+
+description = "Yet Another eStore :: Web core"
+
+dependencies {
+    compile (
+        project (':yastore-core:yastore-commons'),
+
+        [group: 'org.slf4j', name : 'slf4j-api', version : "${slf4jVersion}"],
+
+        // Embedded Jetty server
+        [group: 'org.eclipse.jetty', name : 'jetty-server', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty', name : 'jetty-servlet', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty', name : 'jetty-webapp', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty', name : 'jetty-servlets', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty', name : 'jetty-annotations', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty', name : 'jetty-jmx', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty', name : 'jetty-util', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty', name : 'jetty-security', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty', name : 'jetty-http', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty', name : 'jetty-io', version : "${jettyVersion}"],
+        // required for Jetty annotation config
+        [group: 'org.ow2.asm', name : 'asm', version : "5.0.1"],
+        [group: 'org.ow2.asm', name : 'asm-commons', version : "5.0.1"],
+
+        // Web sockets support
+        [group: 'org.eclipse.jetty.websocket', name : 'websocket-server', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty.websocket', name : 'websocket-servlet', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty.websocket', name : 'websocket-api', version : "${jettyVersion}"],
+        [group: 'org.eclipse.jetty.websocket', name : 'websocket-common', version : "${jettyVersion}"],
+
+        // Command line configuration + properties files configuration
+        [group: 'commons-cli', name : 'commons-cli', version : '1.2'],
+        [group: 'commons-beanutils', name : 'commons-beanutils', version : '1.8.3']            
+    )
+
+    provided (
+        [group: 'javax.servlet', name : 'javax.servlet-api', version : '3.0.1'],
+        [group: 'javax.servlet.jsp', name : 'javax.servlet.jsp-api', version : '2.3.1'],
+    )
+}
+

@@ -1,0 +1,45 @@
+// eStore Application Manifest
+// This file imports and sets up our application. All site styles are included in this file.
+
+@import "overrides";
+
+// ===== FONTS =====
+@font-face {
+  font-family: 'Zapfino One Regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('#{$FontZapfinoPath}/linotypezapfino_one-webfont.eot');
+  src: url('#{$FontZapfinoPath}/linotypezapfino_one-webfont.eot?#iefix') format('embedded-opentype'), url('#{$FontZapfinoPath}/linotypezapfino_one-webfont.woff') format('woff'), url('#{$FontZapfinoPath}/linotypezapfino_one-webfont.ttf') format('truetype'), url('#{$FontZapfinoPath}/linotypezapfino_one-webfont.svg#ltzapfino_oneregular') format('svg');
+}
+@font-face {
+  font-family: 'Zapfino Two Regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('#{$FontZapfinoPath}/linotypezapfino_two-webfont.eot');
+  src: url('#{$FontZapfinoPath}/linotypezapfino_two-webfont.eot?#iefix') format('embedded-opentype'), url('#{$FontZapfinoPath}/linotypezapfino_two-webfont.woff') format('woff'), url('#{$FontZapfinoPath}/linotypezapfino_two-webfont.ttf') format('truetype'), url('#{$FontZapfinoPath}/linotypezapfino_two-webfont.svg#ltzapfino_tworegular') format('svg');
+}
+@font-face {
+  font-family: 'Julee';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Julee-Regular'), url('#{$FontsPath}/Julee/Julee-Regular.ttf') format('truetype'), url('#{$FontsPath}/Julee/Julee.woff') format('woff');
+}
+@font-face {
+  font-family: 'Aspire';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Aspire'), url('#{$FontsPath}/aspare/Aspire-DemiBold.ttf') format('truetype');
+}
+
+// ===== FONTAWESOME =====
+@import "fontawesome/font-awesome";
+
+// ===== BOOTSTRAP =====
+@import "bootstrap/bootstrap";
+
+// Compass
+@import "compass/compass/css3";
+
+// ===== CORE =====
+@import "estore";
+@import "estore_catalog";

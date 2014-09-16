@@ -1,0 +1,23 @@
+<% if(subcategories && subcategories.length > 0) { %>
+	<% if(!subcategory) { %>
+		<h1>Sub categories:</h1>
+	<% } %>
+	
+	<% _.each(subcategories, function(category) { %>
+		<li><label data-code="<%= category.code%>" data-name="<%= category.name %>" class="tree-item-label"><%= category.name %> <span class="badge facet-cnt">15</span></label> <input type="checkbox" checked class="fold" />
+			<% 
+			if(category.subcategories.length > 0) {
+				category.subcategory = true;
+			%>
+				<ol>
+					<%= recursive(category) %>
+				</ol>
+			<% } %>
+		</li>
+      <% }); %>
+<% } %>
+
+<% if(!subcategory) { %>
+	<br />
+	<p>Some advertizing ...</p>
+<% } %>

@@ -1,0 +1,4 @@
+apply plugin: 'java'
+
+description = "Yet Another eStore :: Services :: Payment :: PayPal"
+

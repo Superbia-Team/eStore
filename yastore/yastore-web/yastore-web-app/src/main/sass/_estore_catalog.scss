@@ -1,0 +1,278 @@
+/* CSS Tree menu styles */
+ol.tree {
+    padding: 0 0 0 30px;
+    width: 300px;
+
+	li {
+	    position: relative;
+	    margin-left: -15px;
+	    list-style: none;
+	    
+		label {
+		    padding-left: 20px;
+		    font-weight: normal;
+		    font-family: "Julee","Zapfino One Regular","Aspire","Helvetica Neue",Helvetica,Arial,sans-serif;
+		    font-size: 0.8em;
+		    cursor: pointer;
+		    display: block;
+		    padding-left: 37px;		    
+		    /*text-transform: uppercase;*/
+		    
+			.facet-cnt {
+			    color: #fff;
+			    font-size: 0.6em;
+			    padding-left: 8px;
+			    padding-right: 8px;
+			}
+			
+			&.tree-item-label.active {
+				font-weight: bold;
+			}	    
+		}
+				
+		input.fold {
+		    position: absolute;
+		    left: 0;
+		    margin-left: 0;
+		    opacity: 0;
+		    z-index: 2;
+		    cursor: pointer;
+		    height: 1em;
+		    width: 1em;
+		    top: 0;
+		}
+		input.fold + ol {
+		    background: url(../../images/toggle-small-expand.png) 40px 0 no-repeat;
+		    margin: -1.3em 0 5px -44px;
+		    height: 1em;
+		}
+		input.fold + ol > li {
+		    display: none;
+		    margin-left: -14px !important;
+		    padding-left: 1px;
+		}
+		
+		input.fold:checked + ol {
+		    background: url(../../images/toggle-small.png) 40px -1px no-repeat;
+		    margin: -1.25em 0 0 -44px; /* 20px */
+		    padding: 1em 0 0 80px;
+		    height: auto;
+		}
+		input.fold:checked + ol > li {
+		    display: block; margin: 0 0 0.125em;  /* 2px */
+		}
+		input.fold:checked + ol > li:last-child {
+		    margin: 0 0 0.063em; /* 1px */
+		}
+	}
+	
+	li.selected > label {
+	    font-weight: bold;
+	}
+	
+	li.file {
+	    margin-left: -1px !important;
+	    
+		a {
+		    padding-left: 21px;
+		    text-decoration: none;
+		    display: block;
+		}
+	}
+}
+
+.search-toolbar {
+    font-family: "Julee","Zapfino One Regular","Aspire","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 0.7em;
+    
+	.input-group {
+	    margin-top: -6px;
+	    margin-right: 10px;
+	}
+	.btn-group>.btn, .btn-group-vertical>.btn {
+	    position: relative;
+	    float: left;
+	    margin-right: 6px;
+	}    
+}
+.btn-group .toolbar-text {
+    display: block;
+    margin-top: -4px;
+    padding-left: 2px;
+    padding-right: 4px;
+}
+
+.multiselect-container li {
+    margin-left: 0px;
+}
+
+.ui-dialog-titlebar-close {
+  visibility: hidden;
+}
+.ui-widget-overlay {
+    /*background: url("images/ui-bg_flat_0_aaaaaa_40x100.png") repeat-x scroll 50% 50% #aaaaaa;*/
+    background-color: #aaaaaa;
+    opacity: 0.3;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.ui-dialog {
+    z-index: 1001;
+}
+
+.thumbnail-container {
+    position: relative;
+}
+.img-thumbnail {
+    position: relative;
+    display: block;
+}
+.img-thumbnail > img {
+    width: 100%;
+}
+
+.product-details-popup {
+    z-index: 1001;
+    background: rgba(100,100,100,0.3);
+	position: absolute;
+	color: #fff;
+	padding: 10px;
+	width: 500px;
+	height: 224px;
+	-webkit-border-radius: 5px; /* Saf3+, Chrome */
+	   -moz-border-radius: 5px; /* FF1+ */
+	        border-radius: 5px; /* Opera 10.5, IE 9 */
+	text-align: center;
+	left: -50px;
+	bottom: 30px;
+	display: none;
+	
+	.thumbnail.right-caption > img {
+	    float: left;
+	    margin-right: 9px;
+	}
+	.thumbnail.right-caption {
+	    float: left;
+	}
+	.thumbnail {
+	    position: absolute;
+	    left: 2px;
+	    right: 2px;
+	    top: 2px;
+	    bottom: 2px;
+	    margin-bottom: 0px;
+	
+	}
+	.thumbnail.right-caption > .caption {
+	    padding: 4px;
+	}
+	.btn {
+	    font-size: 0.9em;
+	    padding-top: 0px;
+	    padding-bottom: 0px;
+	}
+}
+
+#details-list {
+    display: none;
+}
+
+.product-price {
+    background-color: transparent !important;
+    bottom: 4px;
+    color: #777;
+    display: inline-block;
+    font-size: 0.9em;
+    left: 20px;
+    padding-top: 6px;
+    position: absolute;
+}
+
+.product-price-old {
+    color: red;
+    text-decoration: line-through;
+    padding-left: 10px;
+}
+
+.btn-view-details {
+    font-size: 1em;
+    height: 30px;
+    margin: 8px;
+    padding: 0px 6px 0px 2px;
+}
+
+/* Multiselect dropdown styles*/
+.multiselect-container {
+	position: absolute;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	
+	.input-group {
+		margin: 5px;
+	}
+
+	> li {
+		padding: 0;
+
+		> a {
+			padding: 0;
+			
+			> label {
+				margin: 0;
+				height: 100%;
+				cursor: pointer;
+				font-weight: 400;
+				padding: 3px 20px 3px 40px;
+			}			
+		}
+		
+		> a.multiselect-all label {
+			font-weight: 700;
+		}
+		
+		> label.multiselect-group {
+			margin: 0;
+			padding: 3px 20px;
+			height: 100%;
+			font-weight: 700;
+		}		
+	}
+	
+	> li>a>label.radio, .multiselect-container>li>a>label.checkbox {
+		margin: 0;
+	}
+	
+	> li>a>label>input[type=checkbox] {
+		margin-bottom: 5px;
+	}	
+}
+
+.btn-group>.btn-group:nth-child(2)>.multiselect.btn {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.form-inline .multiselect-container {
+	label.checkbox, .form-inline .multiselect-container label.radio {
+		padding: 3px 20px 3px 40px;
+	}
+	
+	li a label.checkbox input[type=checkbox], .form-inline .multiselect-container li a label.radio input[type=radio]
+		{
+		margin-left: -20px;
+		margin-right: 0;
+	}	
+}
+
+#catalogView {
+	min-height: 200px;
+}
+
+.paginator-page {
+	cursor: pointer;
+}

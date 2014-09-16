@@ -1,0 +1,24 @@
+
+$FontAwesomePath: "../../fonts/fontawesome";
+$FontZapfinoPath: "../../fonts/zapfino";
+$FontsPath: "../../fonts";
+$icon-font-path: "../../fonts/bootstrap/" !default;
+
+$ptSans: "Zapfino One Regular";
+// == $ptSans: "Zapfino Two Regular"
+
+$sansFontFamily: $ptSans, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif: $ptSans, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif: $ptSans, Georgia, "Times New Roman", Times, serif !default;
+
+@mixin ptSansRegular {
+  font-family: $sansFontFamily;
+  font-weight: 400;
+}
+
+@mixin ptSansBold {
+  font-family: $sansFontFamily;
+  font-weight: 700;
+}
+
+$brand-primary: #333 !default;

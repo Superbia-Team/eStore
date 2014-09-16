@@ -1,0 +1,25 @@
+apply plugin: 'java'
+
+description = "Yet Another eStore :: Core Services"
+
+dependencies {
+    compile (
+        project (':yastore-core:yastore-commons'),
+        project (':yastore-core:yastore-domain'),
+        
+        [group: 'com.typesafe.akka', name : 'akka-actor_2.11', version : "${akkaVersion}"],
+        [group: 'com.typesafe.akka', name : 'akka-slf4j_2.11', version : "${akkaVersion}"],
+        
+        [group: 'org.springframework', name : 'spring-aspects', version : "${springVersion}"],
+        
+    )
+    
+	compile("org.springframework.security:spring-security-core:${springSecurityVersion}") {
+        exclude group: 'org.springframework'
+    }
+    
+    provided (
+        [group: 'javax.servlet', name : 'javax.servlet-api', version : '3.0.1'],
+        [group: 'javax.servlet.jsp', name : 'javax.servlet.jsp-api', version : '2.3.1'],
+    )
+}

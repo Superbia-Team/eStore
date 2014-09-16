@@ -1,0 +1,111 @@
+import org.gradle.plugins.compass.*
+
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'compass'
+apply plugin: 'js' // https://github.com/eriwen/gradle-js-plugin
+
+description = "Yet Another eStore :: Web app"
+
+if (!hasProperty('mainClass')) {
+    ext.mainClass = 'com.dm.estore.MainIDE'
+}
+
+dependencies {
+    compile (
+        project (':yastore-core:yastore-domain'),
+        project (':yastore-core:yastore-services'),
+        project (':yastore-core:yastore-services-search'),
+        project (':yastore-web:yastore-web-jetty'),
+        project (':yastore-web:yastore-web-rest'),
+        project (':yastore-core:yastore-payment-paypal')
+    )
+}
+
+// ------------------------------------------------
+//      Static resources: SCSS
+// ------------------------------------------------
+buildscript {
+    repositories {
+        maven { url 'http://dl.bintray.com/robfletcher/gradle-plugins' }
+        mavenCentral();
+    }
+    dependencies {
+        classpath 'org.gradle.plugins:gradle-compass:1.0.9'
+        classpath 'com.eriwen:gradle-js-plugin:1.12.0'
+    }
+}
+
+// Declare your sources
+javascript.source {
+    dev {
+        js {
+            srcDir 'src/main/webapp/js'
+            include '*.js'
+            exclude '*.min.js'
+        }
+    }
+}
+
+combineJs {
+	source = javascript.source.dev.js.files
+	dest = file("${buildDir}/main-all.js")
+}
+
+// http://code.google.com/closure/compiler/
+minifyJs {
+    source = combineJs
+    dest = file("${buildDir}/main-all-min.js")
+    // sourceMap = file("${buildDir}/all.sourcemap.json")
+    closure {
+        warningLevel = 'QUIET' // 'QUIET', 'DEFAULT' (default), or 'VERBOSE'
+        // compilationLevel = 'WHITESPACE_ONLY', 'SIMPLE_OPTIMIZATIONS' (default), or 'ADVANCED_OPTIMIZATIONS' (are you hardcore?)
+        // compilerOptions = CompilerOptions object
+        // externs = FileCollection object
+    }
+}
+gzipJs {
+    source = minifyJs
+    dest = file("${buildDir}/main-all-min.js")
+}
+
+compass {
+    sassDir = file('src/main/sass')
+    cssDir = file('src/main/webapp/css/app')
+    imagesDir = file('src/main/webapp/images')
+    fontsDir = file('src/main/webapp/fonts')
+    javascriptsDir = file('src/main/webapp/js')
+}
+compileSass {
+    debugInfo = false
+    environment = 'production' // production, development
+    force = true
+    outputStyle = 'compressed' // nested, expanded, compact, compressed
+    relativeAssets = true
+}
+
+task watch(dependsOn: [build, watchSass]) << {
+    println 'Watching for static resources ... press any button to stop'
+    System.console().readLine("\n")
+}
+
+processResources.inputs.files compileSass
+clean.dependsOn cleanCompileSass
+// ------------------------------------------------
+
+eclipse {
+	wtp {
+		facet {
+			facet name: 'jst.web', version: '3.0'
+		}
+	}
+}
+
+war {
+    from "$buildDir/classes/main"
+    from "$buildDir/resources/main"
+    manifest {
+        attributes 'Main-Class': 'WebBootstrap'
+        attributes 'App-Class': 'com.dm.estore.Main'
+    }
+}

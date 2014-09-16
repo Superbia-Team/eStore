@@ -1,0 +1,76 @@
+<div class="container">
+	<div class="row">
+		<div class="btn-toolbar pull-right search-toolbar" role="toolbar">
+			<div class="text-center">
+				<select id="materialFilter" multiple="multiple">
+					<option value="gold">Gold</option>
+					<option value="silver">Silver</option>
+					<option value="platinum">Platinum</option>
+					<option value="metal">Metal</option>
+				</select>
+				<div class="btn-group">
+					<span class="toolbar-text">Color:</span>
+				</div>
+				<select id="colorFilter" multiple="multiple">
+					<option value="green">Green</option>
+					<option value="blue">Blue</option>
+					<option value="red">Red</option>
+					<option value="brown">Brown</option>
+				</select>
+				<div class="btn-group">
+					<span class="toolbar-text">Price:</span>
+				</div>
+				<select id="priceRangeFilter" multiple="multiple">
+					<option value="less100">0 - 100</option>
+					<option value="from100to200">100 - 200</option>
+					<option value="from200to300">200 - 300</option>
+					<option value="from300to500">300 - 500</option>
+					<option value="from500to1000">500 - 1000</option>
+					<option value="more1000">&gt; 1000</option>
+				</select>
+				<div class="btn-group">
+					<span class="toolbar-text">&nbsp;</span>
+				</div>
+				<div class="btn-group">
+					<span class="toolbar-text">View:</span>
+				</div>
+				<div class="btn-group">
+					<button id="thumbnails-selector" alt="Show large images" title="Show large images" type="button"
+						class="btn btn-default btn-xs catalog-view-selector">
+						<span class="glyphicon glyphicon glyphicon-th-large"></span>
+					</button>
+					<button id="details-selector" alt="Show list" title="Show list" type="button" class="btn btn-default btn-xs catalog-view-selector">
+						<span class="glyphicon glyphicon-th-list"></span>
+					</button>
+				</div>
+				<div class="btn-group">
+					<span class="toolbar-text">&nbsp;</span>
+				</div>
+
+				<div id="category-search-paginator" class="btn-group">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br />
+
+	<div class="row">
+		<div id="catalogView" class="col-md-9" role="main">
+		</div>
+		<div id="rightNavigation" class="col-md-3">
+		</div>
+	</div>
+	
+	<div id="productDetailsPopup" class="product-details-popup">
+        <div class="thumbnail right-caption">
+            <img class="span2" src="images/products/images2.jpg" alt="" />
+            <div class="caption">
+                <h5>Thumbnail label </h5>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget. Eget metus</p>
+                <p><a href="#" class="btn btn-primary">Buy</a> <a href="#" class="btn">View details »</a></p>
+            </div>
+        </div>
+    </div>
+</div>

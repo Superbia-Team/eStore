@@ -1,0 +1,12 @@
+rootProject.name = "yastore"
+
+// Just traverse folders and find all project and subprojects
+def path = [] as LinkedList 
+
+rootDir.traverse( 
+    type: groovy.io.FileType.FILES, 
+    nameFilter: ~/.+\.gradle/, 
+    maxDepth: 7, 
+    preDir: { path << it.name }, 
+    postDir: { path.removeLast() }) { if (path) include path.join(":") } 
+    

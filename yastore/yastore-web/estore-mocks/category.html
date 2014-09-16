@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>eStore</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Home page mock">
+	<meta name="author" content="Denis Morozov">
+
+	<link href="site/css/app/application.css" rel="stylesheet" type="text/css" />
+	<link href="site/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <link href="main.css" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="shortcut icon" href="site/images/favicon.ico">
+	<link rel="apple-touch-icon" href="site/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="site/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="site/images/apple-touch-icon-114x114.png">
+
+    <style type="text/css">
+        #layout-top-pane .breadcrumb {
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layout-top-pane" class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-3 logo">
+                        <a href="http://wbpreview.com/previews/WB0M3G9S1/index.html">
+                            <img alt="" src="logo.png">
+                        </a>
+                    </div>
+                    <div class="col-xs-5 col-xs-offset-4">
+                        <div class="row">
+                            <div class="col-xs-7"><div class="account"><a href="#myModal" role="button" data-toggle="modal">YOUR ACCOUNT</a>Welcome Jane Doe</div></div>
+                            <div class="col-xs-5"><div class="cart"><a href="http://wbpreview.com/previews/WB0M3G9S1/cart.html">SHOPPING CART</a>2 items</div></div>
+                        </div>
+
+                        <div class="row">
+                            <form class="navbar-search pull-right" action="">
+                                <input class="search-query span2" placeholder="Search" type="text">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Static navbar -->
+        <nav class="navbar" role="navigation">
+		<ul class="nav navbar-nav">
+		    <li><a href="#">New Arrivals</a></li>
+		    <li><a class="selected" href="#">Handmade Jewelry</a></li>
+		    <li><a href="#">Antique & Vintage</a></li>
+		    <li><a href="#">Market findings</a></li>
+		    <li><a href="#">Sales & specials</a></li>
+		</ul>
+        </nav>
+
+	    <ol class="breadcrumb">
+	        <li><a href="#">Home</a></li>
+	        <li class="active">Categories</li>
+	        <li class="pull-right"><a href="#">About Us</a></li>
+	    </ol>
+    </div>
+
+    <!-- /container -->
+    <div class="container content">
+        <div id="content">
+            <div class="container bs-docs-container">
+
+                <div class="row">
+                    <div class="btn-toolbar pull-right search-toolbar" role="toolbar">
+                         <div class="text-center">
+                            <div class="btn-group">
+                                <span class="toolbar-text">Material:</span>
+                            </div>
+				            <select id="materialFilter" multiple="multiple">
+					            <option value="gold">Gold</option>
+					            <option value="silver">Silver</option>
+					            <option value="platinum">Platinum</option>
+					            <option value="metal">Metal</option>
+				            </select>
+                            <div class="btn-group">
+                                <span class="toolbar-text">Color:</span>
+                            </div>
+				            <select id="colorFilter" multiple="multiple">
+					            <option value="green">Green</option>
+					            <option value="blue">Blue</option>
+					            <option value="red">Red</option>
+					            <option value="brown">Brown</option>
+				            </select>
+                            <div class="btn-group">
+                                <span class="toolbar-text">Price:</span>
+                            </div>
+				            <select id="priceRangeFilter" multiple="multiple">
+					            <option value="less100">0 - 100</option>
+					            <option value="from100to200">100 - 200</option>
+					            <option value="from200to300">200 - 300</option>
+					            <option value="from300to500">300 - 500</option>
+					            <option value="from500to1000">500 - 1000</option>
+					            <option value="more1000">&gt; 1000</option>
+				            </select>
+                            <div class="btn-group"><span class="toolbar-text">&nbsp;</span></div>
+                            <div class="btn-group">
+                                <span class="toolbar-text">View:</span>
+                            </div>
+                            <div class="btn-group">
+                              <button id="showLargeImages" alt="Show large images" title="Show large images" type="button" class="btn btn-default btn-xs active"><span class="glyphicon glyphicon glyphicon-th-large"></span></button>
+                              <button id="showDetailsImages" alt="Show list" title="Show list" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-th-list"></span></button>
+                            </div>
+                            <div class="btn-group"><span class="toolbar-text">&nbsp;</span></div>
+
+
+                            <div class="btn-group">
+                                <span class="toolbar-text">Page: <span>1</span><span>2</span><span>3</span><span class="badge facet-cnt">4</span></span>
+                            </div>
+                            <div class="btn-group"><span class="toolbar-text">/</span></div>
+                            <div class="btn-group">
+                                <span class="toolbar-text">21 - 25</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-9" role="main">
+
+                        <div id="thunmbnails-list" class="row">
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55<span class="product-price-old">$25.99</span></span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+                            <div class="thumbnail-container col-6 col-sm-6 col-lg-4">
+                                <div class="img-thumbnail">
+                                    <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals" />
+                                </div>
+                              <p>
+                                <span class="label label-default product-price">$12.55</span>
+                                <a role="button" href="#" class="btn btn-default btn-view-details pull-right">View details »</a>
+                              </p>
+                            </div>
+
+                        </div>
+
+
+
+                        <div id="details-list" class="row">
+                            <div class="col-6 col-sm-6 col-lg-4">
+                              <div class="thumbnail">
+                                <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals">
+                                <div class="caption">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-lg-4">
+                              <div class="thumbnail">
+                                <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals">
+                                <div class="caption">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-lg-4">
+                              <div class="thumbnail">
+                                <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals">
+                                <div class="caption">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <div class="col-6 col-sm-6 col-lg-4">
+                              <div class="thumbnail">
+                                <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals">
+                                <div class="caption">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-lg-4">
+                              <div class="thumbnail">
+                                <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals">
+                                <div class="caption">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-lg-4">
+                              <div class="thumbnail">
+                                <img src="products/images2.jpg" alt="New Arrivals" title="New Arrivals">
+                                <div class="caption">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                </div>
+                              </div>
+                            </div>
+
+
+                          </div>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+
+                        <h1>Categories:</h1>
+                        <ol class="tree">
+		                    <li>
+		                        <label>Folder 1 <span class="badge facet-cnt">15</span></label>
+                                <input type="checkbox" checked class="fold" />
+			                    <ol>
+				                    <li class="file"><label>File 1 <span class="badge facet-cnt">0</span></label></li>
+				                    <li>
+					                    <label for="subfolder1">Subfolder 1 <span class="badge facet-cnt">0</span></label> <input checked type="checkbox" class="fold" />
+					                    <ol>
+						                    <li class="selected" class="file"><label>File 1 <span class="badge facet-cnt">5</span></label></li>
+						                    <li class="file"><label>File 1 <span class="badge facet-cnt">1</span></label></li>
+						                    <li class="file"><label>File 1 <span class="badge facet-cnt">1</span></label></li>
+						                    <li class="file"><label>File 1 <span class="badge facet-cnt">1</span></label></li>
+						                    <li class="file"><label>File 1 <span class="badge facet-cnt">1</span></label></li>
+					                    </ol>
+				                    </li>
+			                    </ol>
+		                    </li>
+		                    <li>
+			                    <label for="folder2">Folder 2 <span class="badge facet-cnt">3</span></label> <input checked type="checkbox" class="fold" />
+			                    <ol>
+				                    <li class="file"><label>File 1 <span class="badge facet-cnt">0</span></label></li>
+				                    <li>
+					                    <label for="subfolder2">Subfolder 1 <span class="badge facet-cnt">0</span></label> <input checked type="checkbox" class="fold" />
+					                    <ol>
+						                    <li class="file"><label>Subfile 1 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 2 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 3 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 4 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 5 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 6 <span class="badge facet-cnt">0</span></label></li>
+					                    </ol>
+				                    </li>
+			                    </ol>
+		                    </li>
+		                    <li>
+			                    <label for="folder3">Folder 3 <span class="badge facet-cnt">0</span></label> <input checked type="checkbox" class="fold" />
+			                    <ol>
+				                    <li class="file"><label>File 1 <span class="badge facet-cnt">0</span></label></li>
+				                    <li>
+					                    <label for="subfolder3">Subfolder 1 <span class="badge facet-cnt">0</span></label> <input checked type="checkbox" class="fold" />
+					                    <ol>
+						                    <li class="file"><label>Subfile 1 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 2 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 3 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 4 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 5 <span class="badge facet-cnt">0</span></label></li>
+						                    <li class="file"><label>Subfile 6 <span class="badge facet-cnt">0</span></label></li>
+					                    </ol>
+				                    </li>
+			                    </ol>
+		                    </li>
+	                    </ol>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <br/>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- FOOTER -->
+        <footer>
+            <p class="pull-right"><a href="#">Back to top</a></p>
+            <p>&copy; 2013 Delicate Diversity, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">About</a></p>
+        </footer>
+    </div>
+	<!-- /container -->
+
+<!-- Modal
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <a href="#" id="resize">Resize</a>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn">Close</a>
+          <a href="#" class="btn btn-primary">Save changes</a>
+        </div>
+      </div>
+    </div>
+    -->
+    <div id="productDetailsPopup" class="product-details-popup">
+        <div class="thumbnail right-caption">
+            <img class="span2" src="products/images2.jpg" alt="" />
+            <div class="caption">
+                <h5>Thumbnail label </h5>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget. Eget metus</p>
+                <p><a href="#" class="btn btn-primary">Buy</a> <a href="#" class="btn">View details »</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="site/js/lib/jquery/jquery-2.1.1.min.js"></script>
+    <script src="site/js/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="site/js/lib/bootstrap/bootstrap-multiselect.js"></script>
+    <script src="site/jquery-ui/jquery-ui.min.js"></script>
+
+    <script type="text/javascript">
+    function applyFilter() {
+        // alert("Apply filter");
+        if(console && console.log) console.log("Apply filter");
+    }
+
+    $(document).ready(function() {
+        $('#priceRangeFilter').multiselect({
+            nonSelectedText: 'Filter by price',
+            numberDisplayed: 5,
+            buttonClass: 'btn btn-default btn-xs',
+            onDropdownHide: function(event) { applyFilter(); }
+        });
+        $('#materialFilter').multiselect({
+            nonSelectedText: 'Filter by material',
+            numberDisplayed: 5,
+            buttonClass: 'btn btn-default btn-xs',
+            onDropdownHide: function(event) { applyFilter(); }
+        });
+        $('#colorFilter').multiselect({
+            nonSelectedText: 'Filter by color',
+            numberDisplayed: 5,
+            buttonClass: 'btn btn-default btn-xs',
+            onDropdownHide: function(event) { applyFilter(); }
+        });
+
+        /*
+        $(".modal-dialog").dialog({
+            autoOpen: false,
+            modal: true,
+            closeOnEscape: true,
+            dialogClass: "no-title",
+            hide: {
+                effect: "scale",
+                easing: "easeInBack"
+            },
+            show: {
+                effect: "fade",
+                duration: 200,
+                easing: "easeInCirc" // easeInBack,easeInCirc, easeInExpo
+            }
+        });
+
+        function cancelShowTimer() {
+            var timer = $(".modal-dialog").data("showTimer");
+            if (timer) {
+                clearTimeout(timer);
+                $(".modal-dialog").data("showTimer", null);
+            }
+        }
+
+        $(".modal-dialog .close").click(function(){
+            $(".modal-dialog").dialog("close");
+        });
+        $(document).on('click', ".ui-widget-overlay", function(){
+            $(".modal-dialog").dialog("close");
+        });
+
+        $(document).mouseover(function(){
+            $("#productDetailsPopup").hide();
+        });
+        */
+
+        var timer = null;
+        var item = null;
+        $(".img-thumbnail")
+            .click(function() {
+                if (item !== this) {
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    };
+                    item = this;
+                    var popup = $("#productDetailsPopup");
+                    popup.hide();
+                    popup.appendTo($(item));
+                    popup.show({
+                        effect: "fade",
+                        duration: 300,
+                        easing: "easeInCirc" // easeInBack,easeInCirc, easeInExpo
+                    });
+                }
+            })
+            .mouseover(function(){
+                if (item !== this) {
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                    item = this;
+                    timer = setTimeout(function(){
+                        var popup = $("#productDetailsPopup");
+                        popup.hide();
+                        popup.appendTo($(item));
+                        popup.show({
+                            effect: "fade",
+                            duration: 300,
+                            easing: "easeInCirc" // easeInBack,easeInCirc, easeInExpo
+                        });
+                    }, 500);
+                }
+                return false;
+            })
+            .mouseleave(function(){
+                console.log("mouse out");
+                clearTimeout(timer);
+                timer = null;
+                item = null;
+                $("#productDetailsPopup").hide();
+                return false;
+            });
+
+        $("#showLargeImages").click(function(){
+            $("#thunmbnails-list").show();
+            $("#details-list").hide();
+
+            $("#showLargeImages").toggleClass("active");
+            $("#showDetailsImages").toggleClass("active");
+        });
+        $("#showDetailsImages").click(function(){
+            $("#details-list").show();
+            $("#thunmbnails-list").hide();
+
+            $("#showDetailsImages").toggleClass("active");
+            $("#showLargeImages").toggleClass("active");
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+apply plugin: 'war'
+
+description = "Yet Another eStore :: Monitoring"
+
+dependencies {
+    compile (
+        project (':yastore-core:yastore-commons'),
+        project (':yastore-core:yastore-domain'),
+        project (':yastore-core:yastore-services'),
+
+        [group: 'org.springframework', name : 'spring-web', version : "${springVersion}"],
+        [group: 'org.springframework', name : 'spring-webmvc', version : "${springVersion}"],
+
+        // http://ruleoftech.com/2013/monitoring-java-ee-application-with-javamelody
+        // https://code.google.com/p/javamelody/wiki/UserGuide
+        [group: 'net.bull.javamelody', name : 'javamelody-core', version : '1.45.0'],
+
+        // Command line configuration + properties files configuration
+        [group: 'commons-configuration', name : 'commons-configuration', version : "${commonsConfigurationVersion}"],
+        [group: 'commons-beanutils', name : 'commons-beanutils', version : '1.8.3']
+    )
+    // itext, option to add PDF export for Java Melody
+    compile("com.lowagie:itext:2.1.7") {
+        exclude group: 'bcmail-jdk14'
+    }
+	compile("org.springframework.security:spring-security-web:${springSecurityVersion}") {
+        exclude group: 'org.springframework'
+    }
+	compile("org.springframework.security:spring-security-config:${springSecurityVersion}") {
+        exclude group: 'org.springframework'
+    }
+    // Spring Data REST web services
+    compile("org.springframework.data:spring-data-rest-webmvc:${springRESTVersion}") {
+		exclude group: 'org.springframework'
+    }
+
+    provided (
+        [group: 'javax.servlet', name : 'javax.servlet-api', version : '3.0.1'],
+        [group: 'javax.servlet.jsp', name : 'javax.servlet.jsp-api', version : '2.3.1'],
+    )
+}
+
+// Generate Eclipse Web Fragment facet
+eclipse {
+    wtp {
+        facet {
+            facet name: 'jst.webfragment', version: '3.0'
+        }
+    }
+}
+
+// -----------------------------------------------------
+// Add web fragment resources to correct folder: META-INF/resources
+def webResources = "$buildDir/web-resources"
+task copyWebResources(type: Copy) {
+    from "src/main/webapp"
+    into "$webResources/META-INF/resources"
+
+    includeEmptyDirs = true
+}
+sourceSets.main.output.dir(webResources, builtBy: 'copyWebResources')
+// -----------------------------------------------------
+
+jar {
+    enabled = true
+}
+/*
+ *  use the jar as main artifact, hence letting other projects depend upon this one
+ *  the war is still available with a 'war' classifier
+ */
+artifacts {  archives jar }

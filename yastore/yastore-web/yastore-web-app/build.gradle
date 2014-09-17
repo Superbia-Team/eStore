@@ -104,6 +104,14 @@ eclipse {
 war {
     from "$buildDir/classes/main"
     from "$buildDir/resources/main"
+    
+    into("WEB-INF/bootstrap") {
+        from { project(':yastore-web:yastore-web-jetty').configurations.runtime.collect { it } }
+    }
+    into("WEB-INF/bootstrap") {
+        from { configurations.runtime.collect { it }.findAll {it.name.indexOf('yastore-web-jetty') >= 0}.collect { it } }
+    }
+    
     manifest {
         attributes 'Main-Class': 'WebBootstrap'
         attributes 'App-Class': 'com.dm.estore.Main'

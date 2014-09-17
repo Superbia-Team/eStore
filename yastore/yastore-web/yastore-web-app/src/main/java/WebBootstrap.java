@@ -129,7 +129,7 @@ public class WebBootstrap {
 
                     // if the entry is not directory and matches relative file then extract it
                     // FIXME: how to avoid double loading for application libs? like one has persistence declaration?
-                    if (!entry.isDirectory() && entryName.startsWith("WEB-INF/lib")) {
+                    if (!entry.isDirectory() && entryName.startsWith("WEB-INF/bootstrap")) {
                         String libPath = getLibPath(basePath, getLibName(entryName), zipFile.getInputStream(entry));
                         URL webLibUrl = new URL(libPath);
                         list.add(webLibUrl);

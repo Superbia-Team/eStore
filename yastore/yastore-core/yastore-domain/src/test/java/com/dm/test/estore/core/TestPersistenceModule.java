@@ -49,6 +49,7 @@ public class TestPersistenceModule extends PersistenceModule {
 	@Override
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+			DataSource dataSource,
 			PersistenceUnitManager persistenceUnitManager,
 			PersistenceUnitPostProcessor postProcessor) {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

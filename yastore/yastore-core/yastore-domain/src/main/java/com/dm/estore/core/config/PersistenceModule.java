@@ -49,6 +49,7 @@ public class PersistenceModule {
 	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+			DataSource dataSource, 
 			PersistenceUnitManager persistenceUnitManager,
 			PersistenceUnitPostProcessor postProcessor) {
 
@@ -58,7 +59,7 @@ public class PersistenceModule {
 
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setJpaVendorAdapter(vendorAdapter);
-		factory.setDataSource(dataSource());
+		factory.setDataSource(dataSource);
 		factory.setPersistenceUnitPostProcessors(postProcessor);
 		factory.setPersistenceXmlLocation(PERSISTENCE_UNIT_LOCATION);
 		factory.setJpaProperties(additionalProperties());
@@ -72,10 +73,10 @@ public class PersistenceModule {
 	}
 	
 	@Bean
-	public PersistenceUnitManager persistenceUnitManager(PersistenceUnitPostProcessor postProcessor) {
+	public PersistenceUnitManager persistenceUnitManager(DataSource dataSource, PersistenceUnitPostProcessor postProcessor) {
 		MergingPersistenceUnitManager persistenceUnitManager = new MergingPersistenceUnitManager();
 		persistenceUnitManager.setPersistenceXmlLocations(PERSISTENCE_UNIT_LOCATION);
-		persistenceUnitManager.setDefaultDataSource(dataSource());
+		persistenceUnitManager.setDefaultDataSource(dataSource);
 		persistenceUnitManager.setPersistenceUnitPostProcessors(postProcessor);
     
     	return persistenceUnitManager;

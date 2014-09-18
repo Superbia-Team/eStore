@@ -112,7 +112,7 @@ public class WebBootstrap {
         }
     }
 
-    public void start() {
+    public void start(String[] args) {
         try {
             final String warPath = getShadedWarUrl();
             final String basePath = getBasePath(warPath);
@@ -150,7 +150,7 @@ public class WebBootstrap {
                 Thread.currentThread().setContextClassLoader(classLoader);
 
                 final Method method = clazz.getMethod("main", String[].class);
-                method.invoke(null, new Object[]{new String[]{}});
+                method.invoke(null, new Object[]{args});
 
             } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                 e.printStackTrace();
@@ -167,6 +167,6 @@ public class WebBootstrap {
 
     public static void main(String[] args) {
         WebBootstrap bootstrap = new WebBootstrap();
-        bootstrap.start();
+        bootstrap.start(args);
     }
 }

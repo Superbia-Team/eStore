@@ -34,8 +34,9 @@ public class Main {
     public static void main(String... args) throws Exception {
         CommandLineOptions cmd = new CommandLineOptions();
         Properties commandLine = cmd.parse(CommonConstants.App.CFG_APP_NAME, args);
-
-        new Main(commandLine).start();
+        if (commandLine != null) {
+    		new Main(commandLine).start();
+    	}
     }
 
     public Main(Properties commandLine) {

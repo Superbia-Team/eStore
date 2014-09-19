@@ -58,8 +58,9 @@ public class ApplicationModule {
     }
 
     @Bean(name = "actorSystem")
-    public ActorSystem actorSystem() {
-        return Cfg.instance().actorSystem();
+    public ActorSystem actorSystem(Cfg config) {
+        // return Cfg.instance().actorSystem();
+    	return config.actorSystem();
     }
     
     @Bean

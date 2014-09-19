@@ -40,6 +40,8 @@ import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.dm.estore.common.config.Cfg;
+import com.dm.estore.common.config.CfgInitHolder;
 import com.dm.estore.common.constants.CommonConstants;
 
 /**
@@ -166,6 +168,8 @@ public class WebServer {
     	}
     	
         WebAppContext _ctx = new WebAppContext();
+        _ctx.addSystemClass(CfgInitHolder.class.getCanonicalName());
+        // _ctx.setParentLoaderPriority(true);
         _ctx.setContextPath("/");
         
         org.eclipse.jetty.webapp.Configuration.ClassList classlist = org.eclipse.jetty.webapp.Configuration.ClassList.setServerDefault(server);

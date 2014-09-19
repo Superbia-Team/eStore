@@ -65,7 +65,7 @@ import com.typesafe.config.ConfigFactory;
  *
  */
 public class Cfg {
-
+	
     private static final Logger LOG = LoggerFactory.getLogger(Cfg.class);
 
     /**
@@ -111,7 +111,7 @@ public class Cfg {
     private volatile boolean keepWatching = true;
     
     private ConfigurationChangeCallback callback;
-
+    
     /**
      * Resolved configuration home folder.
      */
@@ -129,9 +129,10 @@ public class Cfg {
     public static class Factory {
 
         public static synchronized Cfg createConfiguration(final Properties overrideProperties) {
-            if (instance == null) {
+            if (null == instance) {
                 try {
-                    instance = new Cfg(overrideProperties);
+                	CfgInitHolder.commandLineProperties = overrideProperties != null ? overrideProperties : CfgInitHolder.commandLineProperties;
+                    instance = new Cfg(CfgInitHolder.commandLineProperties);
                 } catch (IOException e) {
                     throw new RuntimeException("Unable to initialize configuration service", e);
                 }

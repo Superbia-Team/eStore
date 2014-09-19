@@ -56,9 +56,9 @@ public class TestPersistenceModule extends PersistenceModule {
 		vendorAdapter.setDatabase(Database.HSQL);
 		
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		factory.setDataSource(dataSource());
+		factory.setDataSource(dataSource);
 		factory.setJpaVendorAdapter(vendorAdapter);
-		factory.setDataSource(dataSource());
+		factory.setDataSource(dataSource);
 		factory.setPersistenceUnitPostProcessors(postProcessor);
 		factory.setPersistenceXmlLocation(PERSISTENCE_UNIT_LOCATION);
 		factory.setJpaProperties(additionalProperties());

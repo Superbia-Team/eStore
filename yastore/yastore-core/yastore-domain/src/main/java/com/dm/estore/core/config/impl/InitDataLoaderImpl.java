@@ -172,11 +172,9 @@ public class InitDataLoaderImpl implements InitDataLoader {
 	}
 	
 	private void readProducts(final ParseHandler handler) throws IOException {
-		Enumeration<URL> resources = ClassLoader.getSystemResources("Products.csv");
-		System.out.print("products: " + resources.hasMoreElements());
-		
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		try (
-				InputStream is = ClassLoader.getSystemResourceAsStream("Products.csv");
+				InputStream is = classLoader.getResourceAsStream("Products.csv");
 				final InputStreamReader fileInputStream = new InputStreamReader(is);
 				final CSVReader reader = new CSVReader(fileInputStream);
 			) {
@@ -189,8 +187,9 @@ public class InitDataLoaderImpl implements InitDataLoader {
 	}
 	
 	private void readCategories(final ParseHandler handler) throws IOException {
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		try (
-				InputStream is = ClassLoader.getSystemResourceAsStream("Categories.csv");
+				InputStream is = classLoader.getResourceAsStream("Categories.csv");
 				final InputStreamReader fileInputStream = new InputStreamReader(is);
 				final CSVReader reader = new CSVReader(fileInputStream);
 			) {

@@ -56,7 +56,7 @@ public class ExtendablePersistenceUnitPostProcessor implements
 				puiClasses.put(pui.getPersistenceUnitName(), classes);
 			}
 			
-			classes.addAll(resolveEntities());
+			classes.addAll(resolveEntities(pui.getManagedClassNames()));
 			pui.getManagedClassNames().addAll(classes);
 			
 			if (LOG.isDebugEnabled()) {
@@ -77,7 +77,7 @@ public class ExtendablePersistenceUnitPostProcessor implements
 	 *  
 	 * @return List of JPA entity classes
 	 */
-	private List<String> resolveEntities() {
+	private List<String> resolveEntities(List<String> classes) {
 		
 		List<Class<?>> entitiesClasses = new ArrayList<Class<?>>();
 		ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
@@ -107,7 +107,9 @@ public class ExtendablePersistenceUnitPostProcessor implements
         List<String> entities = new ArrayList<String>();
         for (Class<?> c : entitiesClasses) {
         	String classPath = c.getCanonicalName();
-        	entities.add(classPath);
+        	if (!classes.contains(classPath)) {
+        		entities.add(classPath);
+        	}
         }
         
 		return entities;

@@ -25,6 +25,9 @@ __Backlog__/*
 production/solr/output
 production/solr/output/*
 
+yastore-web/yastore-web-jetty/config
+yastore-web/yastore-web-jetty/config/*
+
 log-folder_IS_UNDEFINED
 log-folder_IS_UNDEFINED/*
 .sass-cache
